@@ -4,6 +4,7 @@ import ProductGallery from "./components/ProductGallery.jsx";
 import SpecialOffers from "./components/SpecialOffers.jsx";
 import Testimonials from "./components/Testimonials.jsx";
 import LocationMap from "./components/LocationMap.jsx";
+import CallToAction from "./components/CallToAction.jsx";
 
 export default function App(){
     return (
@@ -14,6 +15,7 @@ export default function App(){
             <SpecialOffers/>
             <Testimonials/>
             <LocationMap/>
+            <CallToAction/>
         </>
     );
 }
