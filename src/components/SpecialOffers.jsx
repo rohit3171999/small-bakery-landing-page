@@ -1,24 +1,66 @@
 /*
 * Purpose: Highlight bakery’s signature items and seasonal offers.
 * */
-export default function SpecialOffers(){
+
+const offers = [
+    {
+        name: 'Seasonal Fruit Tart',
+        description: 'A buttery crust filled with vanilla cream and topped with the freshest fruits of the season.',
+        price: '$25.00',
+        originalPrice: '$30.00',
+        imageUrl: 'data:image/jpeg;base64,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',
+    },
+    {
+        name: 'Baker\'s Dozen Deal',
+        description: 'Choose any 13 of your favorite cookies or pastries for the price of 12. Perfect for sharing!',
+        price: 'From $36.00',
+        originalPrice: 'Save 10%',
+        imageUrl: 'https://www.businessoffood.in/wp-content/uploads/2024/02/The-House-Of-Sourdough-by-The-Bakers-Dozen-Delhi-Greater-Kailash-2-1-1.jpg',
+    },
+    {
+        name: 'Coffee & Croissant Combo',
+        description: 'Start your morning right with a freshly brewed coffee and one of our signature flaky croissants.',
+        price: '$7.50',
+        originalPrice: '$9.00',
+        imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNVNk534h43DTFnkS9BP5gMME8jnc4tX0_9g&s',
+    },
+];
+
+export default function SpecialOffers() {
     return (
-        <>
-{/*            <section> (wrapper)*/}
+        <section className="bg-rose-50 py-16 sm:py-24">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
+                {/* Section Header */}
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900">This Week's Specials</h2>
+                    <p className="mt-4 text-lg leading-8 text-gray-600 max-w-2xl mx-auto">
+                        Don't miss out on these delicious, limited-time offers, crafted just for you.
+                    </p>
+                </div>
 
-{/*                <h2> (section title: “Special Offers”)*/}
-
-{/*                    <div> (cards for offers or bestsellers)*/}
-
-{/*                        <img> (item image)*/}
-
-{/*                            <h3> (item name)*/}
-
-{/*                                <p> (description or offer details)*/}
-
-{/*                                    <span> (discount/price)*/}
-
-{/*<button> (CTA: “Order Now”)*/}
-        </>
+                {/* Offers Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {offers.map((offer) => (
+                        <div key={offer.name} className="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+                            <div className="relative">
+                                <img className="w-full h-56 object-cover" src={offer.imageUrl} alt={offer.name} />
+                                <span className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold uppercase px-3 py-1 m-4 rounded-full">Offer</span>
+                            </div>
+                            <div className="p-6 flex flex-col flex-grow">
+                                <h3 className="text-xl font-semibold text-gray-900 mb-2">{offer.name}</h3>
+                                <p className="text-gray-600 flex-grow mb-4">{offer.description}</p>
+                                <div className="flex items-baseline mb-6">
+                                    <span className="text-2xl font-bold text-gray-800 mr-2">{offer.price}</span>
+                                    <span className="text-gray-500 line-through">{offer.originalPrice}</span>
+                                </div>
+                                <button className="mt-auto w-full bg-gray-800 text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300">
+                                    Order Now
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
     );
 }
